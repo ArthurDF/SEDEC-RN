@@ -2,7 +2,7 @@
 """
 Created on Wed Feb 15 14:43:00 2023
 
-@author: ranierelima
+@author: arthurdiniz
 """
 
 import holoviews as hv
@@ -74,7 +74,7 @@ def custom_map(desired_shape, **kwargs):
     # a bokeh server is automatically started
     
     custom_hover = custom_hoover()
-    dataarray = rxr.open_rasterio('C:\\Arthur\\CDEC\\Parte 2\\Dados\\Mapa Adequabilidade\\mapa_adequabilidade_cenario_presente.tif')
+    dataarray = rxr.open_rasterio('Dados/Mapa Adequabilidade/mapa_adequabilidade_cenario_presente.tif')
         
     #dataarray = dataarray.rio.write_crs("EPSG:4326")
     dataarray = dataarray.rio.reproject("EPSG:3857")
@@ -122,21 +122,21 @@ def custom_map(desired_shape, **kwargs):
     # a bokeh server is automatically started
     
     hv_tiles_osm = hv.element.tiles.OSM()
-    rest_add = 'C:\\Arthur\\CDEC\\Parte 2\\Dados\\restrições\\restrições.shp'
+    rest_add = 'Dados/restrições/restrições.shp'
     gdf_rest = gpd.read_file(rest_add)
     hv_rest = gdf_rest.hvplot(geo=True, color='red',label='Restrições', muted_alpha=0).opts(muted=False)
     
-    parques_add = 'C:\\Arthur\\CDEC\\Parte 2\\Dados\\Centroide dos parques\\CENTROIDE_DOS_PARQUES.shp'
+    parques_add = 'Dados/Centroide dos parques/CENTROIDE_DOS_PARQUES.shp'
     gdf_parques = gpd.read_file(parques_add)
     hv_parques = gdf_parques.hvplot(geo=True, color='yellow',label='Parques Eólicos', muted_alpha=0,line_width=2.0).opts(hooks=[mute_hook])
     
     if desired_shape=='Presente':
          
-        shape_add = 'C:\\Arthur\\CDEC\\Parte 2\\Dados\\Rotas\\presente\\presente.shp'
+        shape_add = 'Dados/Rotas/presente/presente.shp'
         gdf = gpd.read_file(shape_add)
         
         
-        add_subestacao = 'C:\\Arthur\\CDEC\\Parte 2\\Dados\\Subestacao\\Subestações___Base_Existente.shp'
+        add_subestacao = 'Dados/Subestacao/Subestações___Base_Existente.shp'
         gdf_subestacao = gpd.read_file(add_subestacao)
         
         hv_rotas = gdf.hvplot(geo=True, color='orange',label='Rotas Cenário Presente', muted_alpha=0,line_width=2.0).opts(muted=True)
@@ -146,11 +146,11 @@ def custom_map(desired_shape, **kwargs):
     if desired_shape == 'Futuro':
         
         
-        shape_add = 'C:\\Arthur\\CDEC\\Parte 2\\Dados\\Rotas\\futuro\\futuro.shp'
+        shape_add = 'Dados/Rotas/futuro/futuro.shp'
         gdf = gpd.read_file(shape_add)
         
         
-        add_subestacao = 'C:\\Arthur\\CDEC\\Parte 2\\Dados\\Subestacao\\Subestações___planejado.shp'
+        add_subestacao = 'Dados/Subestacao/Subestações___planejado.shp'
         gdf_subestacao = gpd.read_file(add_subestacao)
         
         hv_rotas = gdf.hvplot(geo=True, color='green',label='Rotas Cenário Futuro', muted_alpha=0,line_width=2.0).opts(muted=True)
@@ -168,4 +168,5 @@ radio_group = pn.widgets.RadioBoxGroup(name='RadioBoxGroup', options=['Presente'
 
 dmap = hv.DynamicMap(pn.bind(custom_map, desired_shape=radio_group))
 
-bokeh_server = pn.Row(radio_group,dmap).show()
+#bokeh_server = pn.Row(radio_group,dmap).show()
+pn.Row(radio_group,dmap).servable()
