@@ -1,0 +1,8 @@
+https://automating-gis-processes.github.io/2016/Lesson5-interactive-map-bokeh.html
+https://towardsdatascience.com/how-to-create-an-interactive-geographic-map-using-python-and-bokeh-12981ca0b567
+https://towardsdatascience.com/how-to-build-a-map-dashboard-with-python-asap-e278945fbd6d
+https://towardsdatascience.com/displaying-a-gridded-dataset-on-a-web-based-map-ad6bbe90247f
+https://www.datacamp.com/tutorial/tutorial-bokeh-web-app-deployment
+https://medium.com/@jodorning/how-to-deploy-a-bokeh-app-on-heroku-486d7db28299
+https://discourse.holoviz.org/t/keep-zoom-level-when-changing-between-variables-in-a-scatter-plot/1120/3
+https://holoviews.org/user_guide/Custom_Interactivity.html
