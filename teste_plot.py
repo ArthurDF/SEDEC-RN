@@ -98,5 +98,5 @@ hv_combined_basic = hv_tiles_osm * hv_image_basic * gdf.hvplot(geo=True, color='
 bokeh_server = pn.Row(radio_group,hv_combined_basic).show()
 #%%
 # stop the bokeh server (when needed)
-bokeh_server.stop()
+#bokeh_server.stop()
 
