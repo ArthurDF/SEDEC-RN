@@ -49,6 +49,7 @@ value_dimension = 'adequabilidade'
 hv.extension('bokeh', logo=False)
 clipping = {'NaN': '#00000000'}
 '''
+'''
 hv.opts.defaults(
   hv.opts.Image(cmap=cmap_terrain_top_75_percent,
                 height=image_height, width=image_width, 
@@ -57,6 +58,7 @@ hv.opts.defaults(
                 clipping_colors=clipping),
   hv.opts.Tiles(active_tools=['wheel_zoom'], height=map_height, width=map_width)
 )
+'''
 '''
 #custom_hover = custom_hoover()
 
