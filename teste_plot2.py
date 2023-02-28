@@ -12,6 +12,7 @@ import panel as pn
 import numpy as np
 import geopandas as gpd
 import hvplot.pandas
+import geoviews as gv
 
 
 import matplotlib, matplotlib.pyplot, numpy as np
@@ -99,7 +100,7 @@ add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
 gdf_subestacao = gpd.read_file(add_subestacao)
 hv_tiles_osm = hv.element.tiles.OSM()
 print(gdf_subestacao)
-hv_sub = gdf_subestacao.hvplot(geo=True, color='pink',label='Subestação Cenário Presente', muted_alpha=0)
+hv_sub = gv.Points(gdf_subestacao).opts(tools=['hover'])
 hv_combined_basic = hv_tiles_osm*hv_image_basic*hv_sub
 #bokeh_server = pn.Row(radio_group,dmap).show()
 pn.Row('SEDEC',hv_combined_basic).servable()
