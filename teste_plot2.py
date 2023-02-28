@@ -57,7 +57,43 @@ hv.opts.defaults(
   hv.opts.Tiles(active_tools=['wheel_zoom'], height=map_height, width=map_width)
 )
 
+dataarray = rxr.open_rasterio('~/Dados/Mapa Adequabilidade/mapa_adequabilidade_cenario_presente.tif')
 
+#dataarray = dataarray.rio.write_crs("EPSG:4326")
+dataarray = dataarray.rio.reproject("EPSG:3857")
+dataarray
+
+dataarray = dataarray.where(dataarray!=-9999)
+dataarray.values[dataarray.values==9999999]=np.nan
+
+# Some arbitrary sizes we will use to display images.
+image_height, image_width = 600, 600
+
+# Maps will have the same height, but they will be wider
+map_height, map_width = image_height, 1000
+
+# As we've seen, the coordinates in our dataset were called x and y, so we are 
+# going to use these.
+key_dimensions = ['x', 'y']
+
+# We are also going to need the name of the value stored in the file. We get it 
+# from there this time, but we could also set this manually.
+value_dimension = 'adequabilidade'
+
+hv.extension('bokeh', logo=False)
+clipping = {'NaN': '#00000000'}
+hv.opts.defaults(
+  hv.opts.Image(cmap=cmap_terrain_top_75_percent,
+                height=image_height, width=image_width, 
+                colorbar=True, 
+                tools=['hover'], active_tools=['wheel_zoom'], 
+                clipping_colors=clipping),
+  hv.opts.Tiles(active_tools=['wheel_zoom'], height=map_height, width=map_width)
+)
+
+
+hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
+hv_image_basic = hv.Image(hv_dataset).opts(title='first image',tools=[custom_hover])
 
 add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
 gdf_subestacao = gpd.read_file(add_subestacao)
