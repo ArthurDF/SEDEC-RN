@@ -168,6 +168,6 @@ radio_group = pn.widgets.RadioBoxGroup(name='RadioBoxGroup', options=['Presente'
 
 dmap = hv.DynamicMap(pn.bind(custom_map, desired_shape=radio_group))
 
-bokeh_server = pn.Row(radio_group,dmap).show()
-#pn.Row(radio_group,dmap).servable()
+#bokeh_server = pn.Row(radio_group,dmap).show()
+pn.Row('SEDEC',radio_group,dmap).servable()
 #curdoc().add_root(column(dmap))
