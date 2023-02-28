@@ -72,7 +72,7 @@ def custom_map(desired_shape, **kwargs):
     
     # display graph in browser
     # a bokeh server is automatically started
-    
+    '''
     custom_hover = custom_hoover()
     dataarray = rxr.open_rasterio('~/Dados/Mapa Adequabilidade/mapa_adequabilidade_cenario_presente.tif')
         
@@ -107,7 +107,7 @@ def custom_map(desired_shape, **kwargs):
       hv.opts.Tiles(active_tools=['wheel_zoom'], height=map_height, width=map_width)
     )
         
-        
+    
     hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
     hv_dataset.data
         
@@ -116,7 +116,7 @@ def custom_map(desired_shape, **kwargs):
     # try setting the rtol parameter to allow some deviations in sampling like:
     # hv.Image(hv_dataset, rtol=1)
     hv_image_basic = hv.Image(hv_dataset).opts(title='first image',tools=[custom_hover])
-    
+    '''
     
     # display graph in browser
     # a bokeh server is automatically started
@@ -141,7 +141,8 @@ def custom_map(desired_shape, **kwargs):
         
         hv_rotas = gdf.hvplot(geo=True, color='orange',label='Rotas Cenário Presente', muted_alpha=0,line_width=2.0).opts(muted=True)
         hv_sub = gdf_subestacao.hvplot(geo=True, color='pink',label='Subestação Cenário Presente', muted_alpha=0).opts(hooks=[mute_hook])
-        hv_combined_basic = hv_tiles_osm * hv_rest * hv_image_basic * hv_parques * hv_sub * hv_rotas
+        #hv_combined_basic = hv_tiles_osm * hv_rest * hv_image_basic * hv_parques * hv_sub * hv_rotas
+        hv_combined_basic = hv_tiles_osm * hv_rest * hv_parques * hv_sub * hv_rotas
         #hv_combined_basic.opts(legend_muted=True)
     if desired_shape == 'Futuro':
         
@@ -155,7 +156,8 @@ def custom_map(desired_shape, **kwargs):
         
         hv_rotas = gdf.hvplot(geo=True, color='green',label='Rotas Cenário Futuro', muted_alpha=0,line_width=2.0).opts(muted=True)
         hv_sub = gdf_subestacao.hvplot(geo=True, color='purple',label='Subestação Cenário Futuro', muted_alpha=0).opts(hooks=[mute_hook2])
-        hv_combined_basic = hv_tiles_osm * hv_image_basic * hv_parques * hv_rest * hv_sub * hv_rotas
+        #hv_combined_basic = hv_tiles_osm * hv_image_basic * hv_parques * hv_rest * hv_sub * hv_rotas
+        hv_combined_basic = hv_tiles_osm * hv_parques * hv_rest * hv_sub * hv_rotas
         #hv_combined_basic.opts(legend_muted=False)
         
         
