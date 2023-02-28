@@ -7,6 +7,6 @@ geopandas
 hvplot
 matplotlib
 datashader
-cartopy
+cartopy==0.21.1
 geoviews
 pyproj
