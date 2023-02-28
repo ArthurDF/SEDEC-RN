@@ -100,7 +100,7 @@ gdf_subestacao = gpd.read_file(add_subestacao)
 hv_tiles_osm = hv.element.tiles.OSM()
 print(gdf_subestacao)
 #hv_sub = gdf_subestacao.hvplot(geo=True, color='pink',label='Subestação Cenário Presente', muted_alpha=0)
-hv_combined_basic = hv_image_basic
+hv_combined_basic = hd.regrid(hv_image_basic)
 #bokeh_server = pn.Row(radio_group,dmap).show()
 pn.Row('SEDEC',hv_combined_basic).servable()
 
