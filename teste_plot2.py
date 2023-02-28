@@ -17,7 +17,7 @@ import hvplot.pandas
 
 import matplotlib, matplotlib.pyplot, numpy as np
 from custom_hoover import *
-
+'''
 cmap_terrain_top_75_percent =  [matplotlib.colors.rgb2hex(c) for c in matplotlib.pyplot.cm.terrain(np.linspace(0.25, 1, 192))]
 print(cmap_terrain_top_75_percent)
 
@@ -171,3 +171,5 @@ dmap = hv.DynamicMap(pn.bind(custom_map, desired_shape=radio_group))
 #bokeh_server = pn.Row(radio_group,dmap).show()
 pn.Row('SEDEC',radio_group,dmap).servable()
 #curdoc().add_root(column(dmap))
+'''
+pn.Row('#SEDEC','teste').servable()
