@@ -93,14 +93,14 @@ hv.opts.defaults(
 
 
 hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
-hv_image_basic = hv.Image(hv_dataset).opts(title='first image',tools=[custom_hover])
+hv_image_basic = hv.Image(hv_dataset).opts(title='first image')
 
 add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
 gdf_subestacao = gpd.read_file(add_subestacao)
 hv_tiles_osm = hv.element.tiles.OSM()
 print(gdf_subestacao)
 #hv_sub = gdf_subestacao.hvplot(geo=True, color='pink',label='Subestação Cenário Presente', muted_alpha=0)
-hv_combined_basic = hv_tiles_osm
+hv_combined_basic = hv_image_basic
 #bokeh_server = pn.Row(radio_group,dmap).show()
 pn.Row('SEDEC',hv_combined_basic).servable()
 
