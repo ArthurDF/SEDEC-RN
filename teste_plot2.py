@@ -151,8 +151,8 @@ def custom_map(desired_shape, **kwargs):
         #gdf = gpd.read_file(shape_add)
         
         
-        #add_subestacao = '~/Dados/Subestacao/Subestações___planejado.shp'
-        #gdf_subestacao = gpd.read_file(add_subestacao)
+        add_subestacao = '~/Dados/Subestacao/Subestações___planejado.shp'
+        gdf_subestacao = gpd.read_file(add_subestacao)
         
         #hv_rotas = gdf.hvplot(geo=True, color='green',label='Rotas Cenário Futuro', muted_alpha=0,line_width=2.0).opts(muted=True)
         hv_sub = gdf_subestacao.hvplot(geo=True, color='purple',label='Subestação Cenário Futuro', muted_alpha=0).opts(hooks=[mute_hook2])
