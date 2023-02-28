@@ -17,7 +17,7 @@ import hvplot.pandas
 
 import matplotlib, matplotlib.pyplot, numpy as np
 from custom_hoover import *
-'''
+
 cmap_terrain_top_75_percent =  [matplotlib.colors.rgb2hex(c) for c in matplotlib.pyplot.cm.terrain(np.linspace(0.25, 1, 192))]
 print(cmap_terrain_top_75_percent)
 
@@ -48,8 +48,7 @@ value_dimension = 'adequabilidade'
 
 hv.extension('bokeh', logo=False)
 clipping = {'NaN': '#00000000'}
-'''
-'''
+
 hv.opts.defaults(
   hv.opts.Image(cmap=cmap_terrain_top_75_percent,
                 height=image_height, width=image_width, 
@@ -58,8 +57,7 @@ hv.opts.defaults(
                 clipping_colors=clipping),
   hv.opts.Tiles(active_tools=['wheel_zoom'], height=map_height, width=map_width)
 )
-'''
-'''
+
 #custom_hover = custom_hoover()
 
 #@pn.depends(a=widget)
@@ -173,5 +171,5 @@ dmap = hv.DynamicMap(pn.bind(custom_map, desired_shape=radio_group))
 #bokeh_server = pn.Row(radio_group,dmap).show()
 pn.Row('SEDEC',radio_group,dmap).servable()
 #curdoc().add_root(column(dmap))
-'''
-pn.Row('#SEDEC','teste').servable()
+
+#pn.Row('#SEDEC','teste').servable()
