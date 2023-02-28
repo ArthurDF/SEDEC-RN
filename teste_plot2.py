@@ -17,7 +17,7 @@ import hvplot.pandas
 
 import matplotlib, matplotlib.pyplot, numpy as np
 from custom_hoover import *
-
+'''
 cmap_terrain_top_75_percent =  [matplotlib.colors.rgb2hex(c) for c in matplotlib.pyplot.cm.terrain(np.linspace(0.25, 1, 192))]
 print(cmap_terrain_top_75_percent)
 
@@ -57,7 +57,7 @@ hv.opts.defaults(
                 clipping_colors=clipping),
   hv.opts.Tiles(active_tools=['wheel_zoom'], height=map_height, width=map_width)
 )
-
+'''
 #custom_hover = custom_hoover()
 
 #@pn.depends(a=widget)
@@ -122,42 +122,42 @@ def custom_map(desired_shape, **kwargs):
     # a bokeh server is automatically started
     
     hv_tiles_osm = hv.element.tiles.OSM()
-    rest_add = '~/Dados/restrições/restrições.shp'
-    gdf_rest = gpd.read_file(rest_add)
-    hv_rest = gdf_rest.hvplot(geo=True, color='red',label='Restrições', muted_alpha=0).opts(muted=False)
+    #rest_add = '~/Dados/restrições/restrições.shp'
+    #gdf_rest = gpd.read_file(rest_add)
+    #hv_rest = gdf_rest.hvplot(geo=True, color='red',label='Restrições', muted_alpha=0).opts(muted=False)
     
-    parques_add = '~/Dados/Centroide dos parques/CENTROIDE_DOS_PARQUES.shp'
-    gdf_parques = gpd.read_file(parques_add)
-    hv_parques = gdf_parques.hvplot(geo=True, color='yellow',label='Parques Eólicos', muted_alpha=0,line_width=2.0).opts(hooks=[mute_hook])
+    #parques_add = '~/Dados/Centroide dos parques/CENTROIDE_DOS_PARQUES.shp'
+    #gdf_parques = gpd.read_file(parques_add)
+    #hv_parques = gdf_parques.hvplot(geo=True, color='yellow',label='Parques Eólicos', muted_alpha=0,line_width=2.0).opts(hooks=[mute_hook])
     
     if desired_shape=='Presente':
          
-        shape_add = '~/Dados/Rotas/presente/presente.shp'
-        gdf = gpd.read_file(shape_add)
+        #shape_add = '~/Dados/Rotas/presente/presente.shp'
+        #gdf = gpd.read_file(shape_add)
         
         
-        add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
-        gdf_subestacao = gpd.read_file(add_subestacao)
+        #add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
+        #gdf_subestacao = gpd.read_file(add_subestacao)
         
-        hv_rotas = gdf.hvplot(geo=True, color='orange',label='Rotas Cenário Presente', muted_alpha=0,line_width=2.0).opts(muted=True)
-        hv_sub = gdf_subestacao.hvplot(geo=True, color='pink',label='Subestação Cenário Presente', muted_alpha=0).opts(hooks=[mute_hook])
+        #hv_rotas = gdf.hvplot(geo=True, color='orange',label='Rotas Cenário Presente', muted_alpha=0,line_width=2.0).opts(muted=True)
+        #hv_sub = gdf_subestacao.hvplot(geo=True, color='pink',label='Subestação Cenário Presente', muted_alpha=0).opts(hooks=[mute_hook])
         #hv_combined_basic = hv_tiles_osm * hv_rest * hv_image_basic * hv_parques * hv_sub * hv_rotas
-        hv_combined_basic = hv_tiles_osm * hv_rest * hv_parques * hv_sub * hv_rotas
+        hv_combined_basic = hv_tiles_osm 
         #hv_combined_basic.opts(legend_muted=True)
     if desired_shape == 'Futuro':
         
         
-        shape_add = '~/Dados/Rotas/futuro/futuro.shp'
-        gdf = gpd.read_file(shape_add)
+        #shape_add = '~/Dados/Rotas/futuro/futuro.shp'
+        #gdf = gpd.read_file(shape_add)
         
         
-        add_subestacao = '~/Dados/Subestacao/Subestações___planejado.shp'
-        gdf_subestacao = gpd.read_file(add_subestacao)
+        #add_subestacao = '~/Dados/Subestacao/Subestações___planejado.shp'
+        #gdf_subestacao = gpd.read_file(add_subestacao)
         
-        hv_rotas = gdf.hvplot(geo=True, color='green',label='Rotas Cenário Futuro', muted_alpha=0,line_width=2.0).opts(muted=True)
-        hv_sub = gdf_subestacao.hvplot(geo=True, color='purple',label='Subestação Cenário Futuro', muted_alpha=0).opts(hooks=[mute_hook2])
+        #hv_rotas = gdf.hvplot(geo=True, color='green',label='Rotas Cenário Futuro', muted_alpha=0,line_width=2.0).opts(muted=True)
+        #hv_sub = gdf_subestacao.hvplot(geo=True, color='purple',label='Subestação Cenário Futuro', muted_alpha=0).opts(hooks=[mute_hook2])
         #hv_combined_basic = hv_tiles_osm * hv_image_basic * hv_parques * hv_rest * hv_sub * hv_rotas
-        hv_combined_basic = hv_tiles_osm * hv_parques * hv_rest * hv_sub * hv_rotas
+        hv_combined_basic = hv_tiles_osm
         #hv_combined_basic.opts(legend_muted=False)
         
         
