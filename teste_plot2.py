@@ -57,7 +57,7 @@ hv.opts.defaults(
   hv.opts.Tiles(active_tools=['wheel_zoom'], height=map_height, width=map_width)
 )
 
-dataarray = rxr.open_rasterio('~/Dados/Mapa Adequabilidade/mapa_adequabilidade_cenario_presente.tif')
+dataarray = rxr.open_rasterio('mapa_adequabilidade_cenario_presente.tif')
 
 #dataarray = dataarray.rio.write_crs("EPSG:4326")
 dataarray = dataarray.rio.reproject("EPSG:3857")
