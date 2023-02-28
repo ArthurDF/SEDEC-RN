@@ -136,13 +136,13 @@ def custom_map(desired_shape, **kwargs):
         #gdf = gpd.read_file(shape_add)
         
         
-        #add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
-        #gdf_subestacao = gpd.read_file(add_subestacao)
+        add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
+        gdf_subestacao = gpd.read_file(add_subestacao)
         
         #hv_rotas = gdf.hvplot(geo=True, color='orange',label='Rotas Cenário Presente', muted_alpha=0,line_width=2.0).opts(muted=True)
-        #hv_sub = gdf_subestacao.hvplot(geo=True, color='pink',label='Subestação Cenário Presente', muted_alpha=0).opts(hooks=[mute_hook])
+        hv_sub = gdf_subestacao.hvplot(geo=True, color='pink',label='Subestação Cenário Presente', muted_alpha=0).opts(hooks=[mute_hook])
         #hv_combined_basic = hv_tiles_osm * hv_rest * hv_image_basic * hv_parques * hv_sub * hv_rotas
-        hv_combined_basic = hv_tiles_osm 
+        hv_combined_basic = hv_tiles_osm *hv_sub
         #hv_combined_basic.opts(legend_muted=True)
     if desired_shape == 'Futuro':
         
@@ -155,9 +155,9 @@ def custom_map(desired_shape, **kwargs):
         #gdf_subestacao = gpd.read_file(add_subestacao)
         
         #hv_rotas = gdf.hvplot(geo=True, color='green',label='Rotas Cenário Futuro', muted_alpha=0,line_width=2.0).opts(muted=True)
-        #hv_sub = gdf_subestacao.hvplot(geo=True, color='purple',label='Subestação Cenário Futuro', muted_alpha=0).opts(hooks=[mute_hook2])
+        hv_sub = gdf_subestacao.hvplot(geo=True, color='purple',label='Subestação Cenário Futuro', muted_alpha=0).opts(hooks=[mute_hook2])
         #hv_combined_basic = hv_tiles_osm * hv_image_basic * hv_parques * hv_rest * hv_sub * hv_rotas
-        hv_combined_basic = hv_tiles_osm
+        hv_combined_basic = hv_tiles_osm * hv_sub
         #hv_combined_basic.opts(legend_muted=False)
         
         
