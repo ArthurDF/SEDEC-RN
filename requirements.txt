@@ -10,3 +10,4 @@ datashader
 cartopy==0.21.1
 geoviews
 pyproj
+spatialpandas
