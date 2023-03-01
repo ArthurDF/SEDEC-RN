@@ -107,7 +107,6 @@ plot = df.hvplot(
     'x', 
     'y', 
     kind='scatter', 
-    rasterize=True, 
     cmap=cc.fire, 
     cnorm='eq_hist',  
     colorbar=True).opts(colorbar_position='bottom')
