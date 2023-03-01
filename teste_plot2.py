@@ -102,7 +102,7 @@ add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
 add_linha = '~/Dados/Rotas/presente/presente.shp'
 gdf_subestacao = gpd.read_file(add_subestacao)
 gdf_linhas = gpd.read_file(add_linha)
-spd_linhas = spd.GeoDataFrame(gdf_linha)
+spd_linhas = spd.GeoDataFrame(gdf_linhas)
 
 df = gdf_subestacao.drop(columns=['geometry','CD_MUN'])
 df.loc[:, 'x'], df.loc[:, 'y'] = lnglat_to_meters(df.longitude, df.latitude)
