@@ -15,7 +15,7 @@ import hvplot.pandas
 import geoviews as gv
 import  colorcet as cc
 from datashader.utils import lnglat_to_meters
-
+import spatialpandas as spd
 
 import matplotlib, matplotlib.pyplot, numpy as np
 from custom_hoover import *
@@ -99,7 +99,10 @@ hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimension
 hv_image_basic = hv.Image(hv_dataset).opts(title='first image')
 
 add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
+add_linha = '~/Dados/Dados/Rotas/presente/presente.shp'
 gdf_subestacao = gpd.read_file(add_subestacao)
+gdf_linhas = gpd.read_file(add_linha)
+spd_linhas = spd.GeoDataFrame(gdf_linha)
 
 df = gdf_subestacao.drop(columns=['geometry','CD_MUN'])
 df.loc[:, 'x'], df.loc[:, 'y'] = lnglat_to_meters(df.longitude, df.latitude)
@@ -115,7 +118,7 @@ hv_tiles_osm = hv.element.tiles.OSM()
 print(gdf_subestacao)
 #hv_sub = gdf_subestacao.hvplot(geo=True)
 #hv_sub = gv.Points(gdf_subestacao).opts(tools=['hover'])
-hv_combined_basic = hv_tiles_osm*hv_image_basic*plot
+hv_combined_basic = hv_tiles_osm*hv_image_basic*plot*spd_linhas.hvplot()
 #bokeh_server = pn.Row(radio_group,dmap).show()
 pn.Row('SEDEC',hv_combined_basic).servable()
 
