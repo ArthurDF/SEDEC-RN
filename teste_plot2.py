@@ -101,8 +101,9 @@ hv_image_basic = hv.Image(hv_dataset).opts(title='first image')
 add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
 add_linha = '~/Dados/Rotas/presente/presente.shp'
 add_rest = '~/Dados/restrições/restrições.shp'
+add_parques = '~/Dados/centroide parque/CENTROIDE_DOS_PARQUES.shp'
 
-gdf_subestacao = gpd.read_file(add_subestacao)
+
 gdf_linhas = gpd.read_file(add_linha)
 gdf_linhas = gdf_linhas.to_crs(3857)
 spd_linhas = spd.GeoDataFrame(gdf_linhas)
@@ -111,21 +112,19 @@ gdf_rest = gpd.read_file(add_rest)
 gdf_rest = gdf_rest.to_crs(3857)
 spd_rest = spd.GeoDataFrame(gdf_rest)
 
-df = gdf_subestacao.drop(columns=['geometry','CD_MUN'])
-df.loc[:, 'x'], df.loc[:, 'y'] = lnglat_to_meters(df.longitude, df.latitude)
-plot = df.hvplot(
-    'x', 
-    'y', 
-    kind='scatter', 
-    cmap=cc.fire, 
-    cnorm='eq_hist',  
-    colorbar=True).opts(colorbar_position='bottom')
+gdf_parque = gpd.read_file(add_parques)
+gdf_parque = gdf_parque.to_crs(3857)
+spd_parque = spd.GeoDataFrame(gdf_parque)
+
+gdf_subestacao = gpd.read_file(add_subestacao)
+gdf_subestacao = gdf_subestacao.to_crs(3857)
+spd_subestacao = spd.GeoDataFrame(gdf_subestacao)
 
 hv_tiles_osm = hv.element.tiles.OSM()
 print(gdf_subestacao)
 #hv_sub = gdf_subestacao.hvplot(geo=True)
 #hv_sub = gv.Points(gdf_subestacao).opts(tools=['hover'])
-hv_combined_basic = hv_tiles_osm*hv_image_basic*plot*spd_linhas.hvplot()*spd_rest.hvplot()
+hv_combined_basic = hv_tiles_osm*hv_image_basic*spd_rest.hvplot()*spd_linhas.hvplot()*spd_subestacao.hvplot()*spd_parque.hvplot()
 #bokeh_server = pn.Row(radio_group,dmap).show()
 pn.Row('SEDEC',hv_combined_basic).servable()
 
