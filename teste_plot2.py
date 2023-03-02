@@ -100,10 +100,16 @@ hv_image_basic = hv.Image(hv_dataset).opts(title='first image')
 
 add_subestacao = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
 add_linha = '~/Dados/Rotas/presente/presente.shp'
+add_rest = '~/Dados/restrições/restrições.shp'
+
 gdf_subestacao = gpd.read_file(add_subestacao)
 gdf_linhas = gpd.read_file(add_linha)
 gdf_linhas = gdf_linhas.to_crs(3857)
 spd_linhas = spd.GeoDataFrame(gdf_linhas)
+
+gdf_rest = gpd.read_file(add_rest)
+gdf_rest = gdf_rest.to_crs(3857)
+spd_rest = spd.GeoDataFrame(gdf_rest)
 
 df = gdf_subestacao.drop(columns=['geometry','CD_MUN'])
 df.loc[:, 'x'], df.loc[:, 'y'] = lnglat_to_meters(df.longitude, df.latitude)
@@ -119,7 +125,7 @@ hv_tiles_osm = hv.element.tiles.OSM()
 print(gdf_subestacao)
 #hv_sub = gdf_subestacao.hvplot(geo=True)
 #hv_sub = gv.Points(gdf_subestacao).opts(tools=['hover'])
-hv_combined_basic = hv_tiles_osm*hv_image_basic*plot*spd_linhas.hvplot()
+hv_combined_basic = hv_tiles_osm*hv_image_basic*plot*spd_linhas.hvplot()*spd_rest.hvplot()
 #bokeh_server = pn.Row(radio_group,dmap).show()
 pn.Row('SEDEC',hv_combined_basic).servable()
 
