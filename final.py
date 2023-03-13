@@ -176,7 +176,7 @@ rangexy = streams.RangeXY(source = viewer.mapa,
                           )
 rangexy.add_subscriber(viewer.keep_zoom)
 
-stock_dmap = hv.DynamicMap(viewer.view,streams=[rangexy]).opts(responsive=True,align='center',width=1900)
+stock_dmap = hv.DynamicMap(viewer.view,streams=[rangexy]).opts(responsive=True,align='center',width=1900,height=880)
 
 bootstrap.main.append(
     pn.Column(pn.Param(viewer.param,
