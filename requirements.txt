@@ -9,5 +9,5 @@ matplotlib==3.5.3
 datashader==0.14.4
 cartopy==0.21.1
 geoviews==1.8.1
-pyproj==2.6.1
+pyproj
 spatialpandas==0.4.6
