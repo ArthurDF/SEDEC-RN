@@ -114,7 +114,7 @@ class AppTest(param.Parameterized):
     startX,endX = mapa.range('x')
     startY,endY = mapa.range('y')
     
-    plot = scenario_1
+    plot = hv_tiles_osm*mapa*scenario_1
     
     
     def keep_zoom(self,x_range,y_range):
