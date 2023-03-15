@@ -14,6 +14,8 @@ import geopandas as gpd
 import rioxarray as rxr
 import numpy as np
 import hvplot.pandas
+import holoviews.operation.datashader as hd
+import bokeh as bk
 
 hv.extension('bokeh')
 pn.extension(sizing_mode = 'stretch_width')
