@@ -5,9 +5,9 @@ panel==0.14.4
 numpy==1.23.5
 geopandas==0.12.2
 hvplot==0.8.2
-matplotlib
-datashader
+matplotlib==3.7.1
+datashader==0.14.4
 cartopy==0.21.1
-geoviews
-pyproj
-spatialpandas
+geoviews==1.9.6
+pyproj==3.4.1
+spatialpandas==0.4.6
