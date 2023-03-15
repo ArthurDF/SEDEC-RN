@@ -53,7 +53,7 @@ class AppTest(param.Parameterized):
     gdf_parques = gpd.read_file(parques_add)
     gdf_parques = gdf_parques.to_crs(3857)
     spd_parques = spd.GeoDataFrame(gdf_parques)
-    spd_parques_plot = spd_parques.hvplot('green',responsive=True)
+    #spd_parques_plot = spd_parques.hvplot('green',responsive=True)
     
     gdf_rest = gpd.read_file(add_rest)
     gdf_rest = gdf_rest.to_crs(3857)
