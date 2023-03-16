@@ -157,7 +157,7 @@ stock_dmap = hv.DynamicMap(viewer.view,streams=[rangexy],).opts(
     )
 #stock_dmap = stock_dmap.opts(sizing_mode='scale_both')
     
-plot_out = pn.Row(pn.GridSpec(sizing_mode='scale_both'), sizing_mode='scale_both')
+plot_out = pn.Row(pn.GridSpec(sizing_mode='scale_both'), sizing_mode='stretch_both')
 plot_out[0][0,0] = stock_dmap
         
 bootstrap.main.append(
