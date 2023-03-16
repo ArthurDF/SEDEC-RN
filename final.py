@@ -114,11 +114,14 @@ class AppTest(param.Parameterized):
     
     startX,endX = mapa.range('x')
     startY,endY = mapa.range('y')
+    OldStartX,OldEndX = mapa.range('x')
+    OldStartY,OldEndY = mapa.range('y')
+    
     
     plot = hv_tiles_osm*mapa*scenario_1
     
     
-        
+'''        
     @param.depends('radio')
     def view(self,x_range,y_range):
         
@@ -139,7 +142,40 @@ class AppTest(param.Parameterized):
         #self.plot = self.scenario_2
         #print(self.plot.opts.info())
         return self.plot
+'''
+    @param.depends('radio')
+    def view(self,x_range,y_range):
+        X1,X2 = x_range
+        if math.isnan(X1) == False:
+            print('Not None')
+            self.startX,self.endX = x_range
+            self.startY,self.endY = y_range
+            self.OldStartX = self.startX
+            self.OldEndX = self.endX
+            self.OldStartY = self.startY
+            self.OldEndY = self.endY
+        else:
+            x_range = (self.OldStartX,self.OldEndX)
+            y_range = (self.OldStartY,self.OldEndY)
 
+        print(x_range)
+        print(y_range)
+        
+        self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
+        
+        if self.radio == 'Present':
+            print('Present')
+            self.plot= self.hv_tiles_osm*self.mapa*self.scenario_1
+        else:
+            self.plot= self.hv_tiles_osm*self.mapa*self.scenario_2
+        
+        
+        
+        
+        #self.plot = (self.mapa*self.scenario_1).opts(active_tools=['pan','wheel_zoom'],responsive=True,framewise=False)
+        #self.plot = self.scenario_2
+        #print(self.plot.opts.info())
+        return self.plot
 '''Create app and display'''
 viewer = AppTest()
 
