@@ -113,13 +113,13 @@ class AppTest(param.Parameterized):
     scenario_1 = hv_mapa_presente*spd_rotas_presente_plot*spd_subestacao_presente_plot*spd_parques_plot
     scenario_2 = hv_mapa_futuro*spd_rotas_futuro_plot*spd_subestacao_futuro_plot*spd_parques_plot
     
-    startX,endX = scenario_1.range('x')
-    startY,endY = scenario_1.range('y')
-    OldStartX,OldEndX = scenario_1.range('x')
-    OldStartY,OldEndY = scenario_1.range('y')
-    
     
     plot = hv_tiles_osm*mapa*scenario_1
+    
+    startX,endX = plot.range('x')
+    startY,endY = plot.range('y')
+    OldStartX,OldEndX = plot.range('x')
+    OldStartY,OldEndY = plot.range('y')
     
     @param.depends('radio')
     def view(self,x_range,y_range):
