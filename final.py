@@ -120,9 +120,15 @@ class AppTest(param.Parameterized):
     startY,endY = plot.range('y')
     OldStartX,OldEndX = plot.range('x')
     OldStartY,OldEndY = plot.range('y')
-    
+    start = 0
     @param.depends('radio')
     def view(self,x_range,y_range):
+        if self.start == 0:
+            self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
+            self.plot= self.hv_tiles_osm*self.mapa*self.scenario_1
+            self.start==1
+            return self.plot
+            
         X1,X2 = x_range
         print(x_range)
         print(y_range)
