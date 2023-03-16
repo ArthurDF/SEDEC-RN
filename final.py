@@ -142,13 +142,13 @@ class AppTest(param.Parameterized):
 '''Create app and display'''
 viewer = AppTest()
 
-rangexy = streams.RangeXY(source = viewer.mapa, 
+rangexy = streams.RangeXY(source = viewer.plot, 
                           x_range=(viewer.startX,viewer.endX), 
                           y_range=(viewer.startY,viewer.endY)
                           )
 #rangexy.add_subscriber(viewer.keep_zoom)
 
-stock_dmap = hv.DynamicMap(viewer.plot,streams=[rangexy],).opts(
+stock_dmap = hv.DynamicMap(viewer.view,streams=[rangexy],).opts(
     {'Overlay': dict(
                       align = 'center',
                       responsive=True
