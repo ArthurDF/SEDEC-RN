@@ -151,11 +151,11 @@ rangexy = streams.RangeXY(source = viewer.mapa,
 stock_dmap = hv.DynamicMap(viewer.view,streams=[rangexy],).opts(
     {'Overlay': dict(
                       align = 'center',
-                      responsive=True,
-                      sizing_mode = 'scale_both'
+                      responsive=True
                       )
      }
     )
+stock_dmap = stock_dmap.opts(sizing_mode='scale_both')
     
 plot_out = pn.Row(pn.GridSpec(sizing_mode='stretch_both'), sizing_mode='stretch_both')
 plot_out[0][0,0] = stock_dmap
