@@ -122,7 +122,8 @@ class AppTest(param.Parameterized):
     @param.depends('radio')
     def view(self,x_range,y_range):
         
-        
+        print(x_range)
+        print(y_range)
         self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
         
         if self.radio == 'Present':
@@ -136,7 +137,7 @@ class AppTest(param.Parameterized):
         
         #self.plot = (self.mapa*self.scenario_1).opts(active_tools=['pan','wheel_zoom'],responsive=True,framewise=False)
         #self.plot = self.scenario_2
-        print(self.plot.opts.info())
+        #print(self.plot.opts.info())
         return self.plot
 
 '''Create app and display'''
