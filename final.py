@@ -113,10 +113,10 @@ class AppTest(param.Parameterized):
     scenario_1 = hv_mapa_presente*spd_rotas_presente_plot*spd_subestacao_presente_plot*spd_parques_plot
     scenario_2 = hv_mapa_futuro*spd_rotas_futuro_plot*spd_subestacao_futuro_plot*spd_parques_plot
     
-    startX,endX = mapa.range('x')
-    startY,endY = mapa.range('y')
-    OldStartX,OldEndX = mapa.range('x')
-    OldStartY,OldEndY = mapa.range('y')
+    startX,endX = scenario_1.range('x')
+    startY,endY = scenario_1.range('y')
+    OldStartX,OldEndX = scenario_1.range('x')
+    OldStartY,OldEndY = scenario_1.range('y')
     
     
     plot = hv_tiles_osm*mapa*scenario_1
