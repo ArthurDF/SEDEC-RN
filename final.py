@@ -142,7 +142,7 @@ class AppTest(param.Parameterized):
 '''Create app and display'''
 viewer = AppTest()
 
-rangexy = streams.RangeXY(source = viewer.mapa, 
+rangexy = streams.RangeXY(source = viewer.plot, 
                           x_range=(viewer.startX,viewer.endX), 
                           y_range=(viewer.startY,viewer.endY)
                           )
