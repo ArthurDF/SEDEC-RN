@@ -148,7 +148,7 @@ rangexy = streams.RangeXY(source = viewer.mapa,
                           )
 #rangexy.add_subscriber(viewer.keep_zoom)
 
-stock_dmap = hv.DynamicMap(viewer.view,streams=[rangexy],).opts(
+stock_dmap = hv.DynamicMap(viewer.plot,streams=[rangexy],).opts(
     {'Overlay': dict(
                       align = 'center',
                       responsive=True
