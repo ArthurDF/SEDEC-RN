@@ -126,9 +126,9 @@ class AppTest(param.Parameterized):
 
         if self.radio == 'Present':
             print('Present')
-            self.plot= self.hv_tiles_osm*self.mapa*self.scenario_1
+            self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_1).redim.range(x=x_range, y=y_range)
         else:
-            self.plot= self.hv_tiles_osm*self.mapa*self.scenario_2
+            self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_2).redim.range(x=x_range, y=y_range)
         
         
         
