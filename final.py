@@ -136,6 +136,7 @@ class AppTest(param.Parameterized):
         
         #self.plot = (self.mapa*self.scenario_1).opts(active_tools=['pan','wheel_zoom'],responsive=True,framewise=False)
         #self.plot = self.scenario_2
+        print(self.plot.opts.info())
         return self.plot
 
 '''Create app and display'''
