@@ -14,8 +14,9 @@ import geopandas as gpd
 import rioxarray as rxr
 import numpy as np
 import hvplot.pandas
-#import holoviews.operation.datashader as hd
+import holoviews.operation.datashader as hd
 import bokeh as bk
+
 
 hv.extension('bokeh')
 pn.extension(sizing_mode = 'stretch_width')
@@ -117,13 +118,10 @@ class AppTest(param.Parameterized):
     plot = hv_tiles_osm*mapa*scenario_1
     
     
-    def keep_zoom(self,x_range,y_range):
-        self.startX,self.endX = x_range
-        self.startY,self.endY = y_range
         
     @param.depends('radio')
     def view(self,x_range,y_range):
-        print(x_range)
+        
         
         self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
         
@@ -132,7 +130,12 @@ class AppTest(param.Parameterized):
             self.plot= self.hv_tiles_osm*self.mapa*self.scenario_1
         else:
             self.plot= self.hv_tiles_osm*self.mapa*self.scenario_2
-            
+        
+        
+        
+        
+        #self.plot = (self.mapa*self.scenario_1).opts(active_tools=['pan','wheel_zoom'],responsive=True,framewise=False)
+        #self.plot = self.scenario_2
         return self.plot
 
 '''Create app and display'''
@@ -164,4 +167,3 @@ bootstrap.main.append(
     )
 #bootstrap.show()
 bootstrap.servable()
-        
