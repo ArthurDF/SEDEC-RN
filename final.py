@@ -124,6 +124,9 @@ class AppTest(param.Parameterized):
     @param.depends('radio')
     def view(self,x_range,y_range):
         X1,X2 = x_range
+        print(x_range)
+        print(y_range)
+        print(X1)
         if math.isnan(X1) == False:
             print('Not None')
             self.startX,self.endX = x_range
@@ -132,14 +135,14 @@ class AppTest(param.Parameterized):
             self.OldEndX = self.endX
             self.OldStartY = self.startY
             self.OldEndY = self.endY
+            self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
         else:
-            x_range = (self.OldStartX,self.OldEndX)
-            y_range = (self.OldStartY,self.OldEndY)
+            print('None')
+            self.mapa = self.mapa.redim.range(x=(self.OldStartX,self.OldEndX), y=(self.OldStartY,self.OldEndY))
 
-        print(x_range)
-        print(y_range)
         
-        self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
+        
+        
         
         if self.radio == 'Present':
             print('Present')
