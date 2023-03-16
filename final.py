@@ -62,7 +62,7 @@ class AppTest(param.Parameterized):
     gdf_rest = gpd.read_file(add_rest)
     gdf_rest = gdf_rest.to_crs(3857)
     spd_rest = spd.GeoDataFrame(gdf_rest)
-    mapa= spd_rest.hvplot(color='blue',responsive=True).redim.range(x=(-4470613.141394969, -3619131.681957572), y=(-810277.0303727706, -464547.8995107183))
+    mapa= spd_rest.hvplot(color='blue',responsive=True)
     
     hv_tiles_osm = hv.element.tiles.OSM()
     
