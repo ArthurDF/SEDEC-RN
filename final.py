@@ -120,29 +120,6 @@ class AppTest(param.Parameterized):
     
     plot = hv_tiles_osm*mapa*scenario_1
     
-    
-'''        
-    @param.depends('radio')
-    def view(self,x_range,y_range):
-        
-        print(x_range)
-        print(y_range)
-        self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
-        
-        if self.radio == 'Present':
-            print('Present')
-            self.plot= self.hv_tiles_osm*self.mapa*self.scenario_1
-        else:
-            self.plot= self.hv_tiles_osm*self.mapa*self.scenario_2
-        
-        
-        
-        
-        #self.plot = (self.mapa*self.scenario_1).opts(active_tools=['pan','wheel_zoom'],responsive=True,framewise=False)
-        #self.plot = self.scenario_2
-        #print(self.plot.opts.info())
-        return self.plot
-'''
     @param.depends('radio')
     def view(self,x_range,y_range):
         X1,X2 = x_range
