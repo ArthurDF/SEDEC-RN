@@ -57,7 +57,7 @@ class AppTest(param.Parameterized):
     gdf_parques = gpd.read_file(parques_add)
     gdf_parques = gdf_parques.to_crs(3857)
     spd_parques = spd.GeoDataFrame(gdf_parques)
-    spd_parques_plot = spd_parques.hvplot('green',responsive=True).redim.range(x=(-4470613.141394969, -3619131.681957572), y=(-810277.0303727706, -464547.8995107183))
+    spd_parques_plot = spd_parques.hvplot('green',responsive=True)
     
     gdf_rest = gpd.read_file(add_rest)
     gdf_rest = gdf_rest.to_crs(3857)
@@ -71,7 +71,7 @@ class AppTest(param.Parameterized):
     gdf_rotas_futuro = gpd.read_file(rotas_futuro_add)
     gdf_rotas_futuro = gdf_rotas_futuro.to_crs(3857)
     spd_rotas_futuro = spd.GeoDataFrame(gdf_rotas_futuro)
-    spd_rotas_futuro_plot = spd_rotas_futuro.hvplot(color='purple',responsive=True).redim.range(x=(-4470613.141394969, -3619131.681957572), y=(-810277.0303727706, -464547.8995107183))
+    spd_rotas_futuro_plot = spd_rotas_futuro.hvplot(color='purple',responsive=True)
     
     
     gdf_subestacao_futuro = gpd.read_file(add_subestacao_futuro)
@@ -84,26 +84,26 @@ class AppTest(param.Parameterized):
     dataarray = dataarray.where(dataarray!=-9999)
     dataarray.values[dataarray.values==9999999]=np.nan
     hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
-    hv_mapa_futuro = hv.Image(hv_dataset).opts(title='futuro',responsive=True,cmap='plasma').redim.range(x=(-4470613.141394969, -3619131.681957572), y=(-810277.0303727706, -464547.8995107183))
+    hv_mapa_futuro = hv.Image(hv_dataset).opts(title='futuro',responsive=True,cmap='plasma')
     
     
     '''Passado'''
     gdf_rotas_presente = gpd.read_file(rotas_presente_add)
     gdf_rotas_presente = gdf_rotas_presente.to_crs(3857)
     spd_rotas_presente = spd.GeoDataFrame(gdf_rotas_presente)
-    spd_rotas_presente_plot = spd_rotas_presente.hvplot(color='yellow',responsive=True).redim.range(x=(-4470613.141394969, -3619131.681957572), y=(-810277.0303727706, -464547.8995107183))
+    spd_rotas_presente_plot = spd_rotas_presente.hvplot(color='yellow',responsive=True)
     
     gdf_subestacao_presente = gpd.read_file(add_subestacao_presente)
     gdf_subestacao_presente = gdf_subestacao_presente.to_crs(3857)
     spd_subestacao_presente = spd.GeoDataFrame(gdf_subestacao_presente)
-    spd_subestacao_presente_plot = spd_subestacao_presente.hvplot(color='pink',responsive=True).redim.range(x=(-4470613.141394969, -3619131.681957572), y=(-810277.0303727706, -464547.8995107183))
+    spd_subestacao_presente_plot = spd_subestacao_presente.hvplot(color='pink',responsive=True)
     
     dataarray = rxr.open_rasterio(add_mapa_presente)
     dataarray = dataarray.rio.reproject("EPSG:3857")
     dataarray = dataarray.where(dataarray!=-9999)
     dataarray.values[dataarray.values==9999999]=np.nan
     hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
-    hv_mapa_presente = hv.Image(hv_dataset).opts(title='presente',responsive=True,cmap='viridis').redim.range(x=(-4470613.141394969, -3619131.681957572), y=(-810277.0303727706, -464547.8995107183))
+    hv_mapa_presente = hv.Image(hv_dataset).opts(title='presente',responsive=True,cmap='viridis')
     
     '''Generating the HVplots to be used on solution (using Spatial Pandas 
     because for some reason when I tried to geopandas.hvplot on heroku it didn't work)'''
@@ -114,10 +114,10 @@ class AppTest(param.Parameterized):
     scenario_2 = hv_mapa_futuro*spd_rotas_futuro_plot*spd_subestacao_futuro_plot*spd_parques_plot
     
     
-    plot = (hv_tiles_osm*mapa*scenario_1).redim.range(x=(-4470613.141394969, -3619131.681957572), y=(-810277.0303727706, -464547.8995107183))
+    plot = (hv_tiles_osm*mapa*scenario_1)
     
-    startX,endX = plot.range('x')
-    startY,endY = plot.range('y')
+    startX,endX = mapa.range('x')
+    startY,endY = mapa.range('y')
 
     
     @param.depends('radio')
