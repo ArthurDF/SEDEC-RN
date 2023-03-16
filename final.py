@@ -16,6 +16,7 @@ import numpy as np
 import hvplot.pandas
 import holoviews.operation.datashader as hd
 import bokeh as bk
+import math
 
 
 hv.extension('bokeh')
@@ -153,6 +154,8 @@ class AppTest(param.Parameterized):
         #self.plot = self.scenario_2
         #print(self.plot.opts.info())
         return self.plot
+    
+    
 '''Create app and display'''
 viewer = AppTest()
 
