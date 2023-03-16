@@ -118,38 +118,12 @@ class AppTest(param.Parameterized):
     
     startX,endX = plot.range('x')
     startY,endY = plot.range('y')
-    OldStartX,OldEndX = plot.range('x')
-    OldStartY,OldEndY = plot.range('y')
-    start = 0
+
+    
     @param.depends('radio')
     def view(self,x_range,y_range):
-        if self.start == 0:
-            self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
-            self.plot= self.hv_tiles_osm*self.mapa*self.scenario_1
-            self.start==1
-            return self.plot
-            
-        X1,X2 = x_range
-        print(x_range)
-        print(y_range)
-        print(X1)
-        if math.isnan(X1) == False:
-            print('Not None')
-            self.startX,self.endX = x_range
-            self.startY,self.endY = y_range
-            self.OldStartX = self.startX
-            self.OldEndX = self.endX
-            self.OldStartY = self.startY
-            self.OldEndY = self.endY
-            self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
-        else:
-            print('None')
-            self.mapa = self.mapa.redim.range(x=(self.OldStartX,self.OldEndX), y=(self.OldStartY,self.OldEndY))
+        self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
 
-        
-        
-        
-        
         if self.radio == 'Present':
             print('Present')
             self.plot= self.hv_tiles_osm*self.mapa*self.scenario_1
@@ -177,7 +151,8 @@ rangexy = streams.RangeXY(source = viewer.mapa,
 stock_dmap = hv.DynamicMap(viewer.view,streams=[rangexy],).opts(
     {'Overlay': dict(
                       align = 'center',
-                      responsive=True
+                      responsive=True,
+                      sizing_mode = 'scale_both'
                       )
      }
     )
