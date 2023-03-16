@@ -42,7 +42,7 @@ class AppTest(param.Parameterized):
     add_rest = '~/Dados/restrições/restrições.shp'
     parques_add = '~/Dados/centroide parque/CENTROIDE_DOS_PARQUES.shp'
     rotas_presente_add = '~/Dados/Rotas/presente/presente.shp'
-    add_subestacao_presente = '~/Dados/Subestacao/Subestações___Base_Existente.shp'
+    add_subestacao_presente = '~/Dados/Subestacao/Subestações___Base_Existente2.shp'
     rotas_futuro_add ='~/Dados/Rotas/futuro/futuro.shp'
     add_subestacao_futuro = '~/Dados/Subestacao/Subestações___planejado.shp'
     add_mapa_presente = 'mapa_adequabilidade_cenario_presente.tif'
