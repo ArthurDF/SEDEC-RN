@@ -118,10 +118,15 @@ class AppTest(param.Parameterized):
     
     startX,endX = mapa.range('x')
     startY,endY = mapa.range('y')
+    cont=0
 
     
     @param.depends('radio')
     def view(self,x_range,y_range):
+        print(x_range)
+        print(y_range)
+        print('plot:',self.cont)
+        self.cont=self.cont+1
         x1,x1 = x_range
         if math.isnan(x1) == False:
             print('REDIM')
