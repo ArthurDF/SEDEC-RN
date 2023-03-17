@@ -114,7 +114,7 @@ class AppTest(param.Parameterized):
     scenario_2 = hv_mapa_futuro*spd_rotas_futuro_plot*spd_subestacao_futuro_plot*spd_parques_plot
     
     
-    plot = (hv_tiles_osm*mapa*scenario_1)
+    #plot = (hv_tiles_osm*mapa*scenario_1)
     
     startX,endX = mapa.range('x')
     startY,endY = mapa.range('y')
