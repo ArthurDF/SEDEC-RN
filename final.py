@@ -128,21 +128,8 @@ class AppTest(param.Parameterized):
         print(x_range)
         print(y_range)
         print('plot:',self.cont)
-        if self.cont == 1:
-            self.startRangeX = x_range
-            self.startRangeY = y_range
-       
-        x1,x1 = x_range
-        if math.isnan(x1) == False:
-            print('REDIM')
-            if self.cont>2:
-                if self.startRangeX == x_range:
-                    print('do nothing')
-                    
-                else:
-                    self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
-        else:
-            print('None')
+        #self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
+        
             
         
         if self.radio == 'Present':
