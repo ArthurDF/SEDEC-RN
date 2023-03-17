@@ -118,6 +118,8 @@ class AppTest(param.Parameterized):
     
     startX,endX = mapa.range('x')
     startY,endY = mapa.range('y')
+    startRangeX = 0
+    startRangeY = 0
     cont=0
 
     
@@ -126,14 +128,23 @@ class AppTest(param.Parameterized):
         print(x_range)
         print(y_range)
         print('plot:',self.cont)
-        self.cont=self.cont+1
+        if self.cont == 1:
+            self.startRangeX = x_range
+            self.startRangeY = y_range
+       
         x1,x1 = x_range
         if math.isnan(x1) == False:
             print('REDIM')
-            self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
+            if self.cont>2:
+                if self.startRangeX == x_range:
+                    print('do nothing')
+                    
+                else:
+                    self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
         else:
             print('None')
             
+        
         if self.radio == 'Present':
             print('Present')
             self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_1)#.redim.range(x=x_range, y=y_range)
@@ -146,6 +157,7 @@ class AppTest(param.Parameterized):
         #self.plot = (self.mapa*self.scenario_1).opts(active_tools=['pan','wheel_zoom'],responsive=True,framewise=False)
         #self.plot = self.scenario_2
         #print(self.plot.opts.info())
+        self.cont=self.cont+1
         return self.plot
     
     
