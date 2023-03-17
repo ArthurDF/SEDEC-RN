@@ -128,7 +128,7 @@ class AppTest(param.Parameterized):
         print(x_range)
         print(y_range)
         print('plot:',self.cont)
-        #self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
+        self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
         
             
         
