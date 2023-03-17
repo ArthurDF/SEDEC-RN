@@ -122,13 +122,18 @@ class AppTest(param.Parameterized):
     
     @param.depends('radio')
     def view(self,x_range,y_range):
-        self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
-
+        x1,x1 = x_range
+        if math.isnan(x1) == False:
+            print('REDIM')
+            self.mapa = self.mapa.redim.range(x=x_range, y=y_range)
+        else:
+            print('None')
+            
         if self.radio == 'Present':
             print('Present')
-            self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_1).redim.range(x=x_range, y=y_range)
+            self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_1)#.redim.range(x=x_range, y=y_range)
         else:
-            self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_2).redim.range(x=x_range, y=y_range)
+            self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_2)#.redim.range(x=x_range, y=y_range)
         
         
         
@@ -141,10 +146,16 @@ class AppTest(param.Parameterized):
     
 '''Create app and display'''
 viewer = AppTest()
-
+'''
 rangexy = streams.RangeXY(source = viewer.mapa, 
                           x_range=(viewer.startX,viewer.endX), 
                           y_range=(viewer.startY,viewer.endY)
+                          )
+                          '''
+
+rangexy = streams.RangeXY(source = viewer.mapa, 
+                          x_range=(np.nan,np.nan), 
+                          y_range=(np.nan,np.nan)
                           )
 #rangexy.add_subscriber(viewer.keep_zoom)
 
