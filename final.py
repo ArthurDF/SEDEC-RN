@@ -21,7 +21,7 @@ import math
 
 hv.extension('bokeh')
 pn.extension(sizing_mode = 'stretch_width')
-bootstrap = pn.template.BootstrapTemplate(title='Visualizador de Mapa')
+bootstrap = pn.template.BootstrapTemplate(title='Estratégias Locacionais - SEDEC/ISI-ER')
 
 class AppTest(param.Parameterized):
     '''Defining the scenarios'''
@@ -62,7 +62,7 @@ class AppTest(param.Parameterized):
     gdf_rest = gpd.read_file(add_rest)
     gdf_rest = gdf_rest.to_crs(3857)
     spd_rest = spd.GeoDataFrame(gdf_rest)
-    mapa= spd_rest.hvplot(color='blue',responsive=True)
+    mapa= spd_rest.hvplot(color='black',responsive=True)
     
     hv_tiles_osm = hv.element.tiles.OSM()
     
@@ -84,7 +84,7 @@ class AppTest(param.Parameterized):
     dataarray = dataarray.where(dataarray!=-9999)
     dataarray.values[dataarray.values==9999999]=np.nan
     hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
-    hv_mapa_futuro = hv.Image(hv_dataset).opts(title='futuro',responsive=True,cmap='plasma')
+    hv_mapa_futuro = hv.Image(hv_dataset).opts(title='futuro',responsive=True,cmap='RdGn')
     
     
     '''Passado'''
@@ -103,7 +103,7 @@ class AppTest(param.Parameterized):
     dataarray = dataarray.where(dataarray!=-9999)
     dataarray.values[dataarray.values==9999999]=np.nan
     hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
-    hv_mapa_presente = hv.Image(hv_dataset).opts(title='presente',responsive=True,cmap='viridis')
+    hv_mapa_presente = hv.Image(hv_dataset).opts(title='presente',responsive=True,cmap='RdGn')
     
     '''Generating the HVplots to be used on solution (using Spatial Pandas 
     because for some reason when I tried to geopandas.hvplot on heroku it didn't work)'''
