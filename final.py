@@ -84,7 +84,7 @@ class AppTest(param.Parameterized):
     dataarray = dataarray.where(dataarray!=-9999)
     dataarray.values[dataarray.values==9999999]=np.nan
     hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
-    hv_mapa_futuro = hv.Image(hv_dataset).opts(title='futuro',responsive=True,cmap='RdYlGn')
+    hv_mapa_futuro = hv.Image(hv_dataset).opts(title='futuro',responsive=True,cmap='RdYlGn_r')
     
     
     '''Passado'''
@@ -103,7 +103,7 @@ class AppTest(param.Parameterized):
     dataarray = dataarray.where(dataarray!=-9999)
     dataarray.values[dataarray.values==9999999]=np.nan
     hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
-    hv_mapa_presente = hv.Image(hv_dataset).opts(title='presente',responsive=True,cmap='RdYlGn')
+    hv_mapa_presente = hv.Image(hv_dataset).opts(title='presente',responsive=True,cmap='RdYlGn_r')
     
     '''Generating the HVplots to be used on solution (using Spatial Pandas 
     because for some reason when I tried to geopandas.hvplot on heroku it didn't work)'''
