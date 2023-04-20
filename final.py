@@ -85,7 +85,7 @@ class AppTest(param.Parameterized):
     dataarray.values[dataarray.values==9999999]=np.nan
     hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
     #hv_mapa_futuro = hv.Image(hv_dataset).opts(title='futuro',responsive=True,cmap='RdYlGn_r')
-    hv_mapa_futuro = hv.Image(hv_dataset).opts(title='futuro',responsive=True)
+    hv_mapa_futuro = hv.Image(hv_dataset).opts(title='futuro',responsive=True,cmap='viridis')
     
     
     '''Passado'''
@@ -105,15 +105,15 @@ class AppTest(param.Parameterized):
     dataarray.values[dataarray.values==9999999]=np.nan
     hv_dataset = hv.Dataset(dataarray[0], vdims=value_dimension, kdims=key_dimensions)
     #hv_mapa_presente = hv.Image(hv_dataset).opts(title='presente',responsive=True,cmap='RdYlGn_r')
-    hv_mapa_presente = hv.Image(hv_dataset).opts(title='presente',responsive=True)
+    hv_mapa_presente = hv.Image(hv_dataset).opts(title='presente',responsive=True,cmap='viridis')
     
     '''Generating the HVplots to be used on solution (using Spatial Pandas 
     because for some reason when I tried to geopandas.hvplot on heroku it didn't work)'''
     
     
     
-    scenario_1 = hv_mapa_presente*spd_rotas_presente_plot*spd_subestacao_presente_plot*spd_parques_plot
-    scenario_2 = hv_mapa_futuro*spd_rotas_futuro_plot*spd_subestacao_futuro_plot*spd_parques_plot
+    scenario_1 = hv_mapa_presente#*spd_rotas_presente_plot*spd_subestacao_presente_plot*spd_parques_plot
+    scenario_2 = hv_mapa_futuro#*spd_rotas_futuro_plot*spd_subestacao_futuro_plot*spd_parques_plot
     
     
     #plot = (hv_tiles_osm*mapa*scenario_1)
@@ -136,10 +136,11 @@ class AppTest(param.Parameterized):
         
         if self.radio == 'Present':
             print('Present')
-            self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_1)#.redim.range(x=x_range, y=y_range)
+            #self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_1)#.redim.range(x=x_range, y=y_range)
+            self.plot= (self.hv_tiles_osm*self.scenario_1)#.redim.range(x=x_range, y=y_range)
         else:
-            self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_2)#.redim.range(x=x_range, y=y_range)
-        
+            #self.plot= (self.hv_tiles_osm*self.mapa*self.scenario_2)#.redim.range(x=x_range, y=y_range)
+            self.plot= (self.hv_tiles_osm*self.scenario_2)#.redim.range(x=x_range, y=y_range)
         
         
         
